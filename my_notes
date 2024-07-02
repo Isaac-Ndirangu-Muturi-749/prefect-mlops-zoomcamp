@@ -1,0 +1,38 @@
+conda create -n prefect-ops python==3.9.12
+
+conda activate prefect-ops
+
+pip install -r requirements.txt
+
+prefect server start
+
+prefect config set PREFECT_API_URL=http://127.0.0.1:4200/api
+
+python 3.3/orchestrate_pre_prefect.py
+python 3.3/orchestrate.py
+
+prefect project init
+
+prefect deploy 3.4/orchestrate.py:main_flow -n taxi1 -p zoompool
+
+prefect worker start --pool 'zoompool'
+
+prefect worker start -p zoompool
+
+prefect deployment run 'main-flow/taxi1'
+
+
+python 3.5/create_s3_bucket_block.py
+
+prefect block ls
+
+prefect block type ls
+
+prefect block register -m prefect_aws
+
+python 3.5/orchestrate_s3.py
+
+prefect deploy --all
+
+prefect deployment run main-flow-s3/taxi_s3_data
+
