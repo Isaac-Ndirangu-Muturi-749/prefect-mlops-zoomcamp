@@ -34,5 +34,16 @@ python 3.5/orchestrate_s3.py
 
 prefect deploy --all
 
+
+prefect deploy 3.5/orchestrate_s3.py:main_flow_s3 -n taxi_s3_data -p zoompool
+prefect worker start -p zoompool
+
 prefect deployment run main-flow-s3/taxi_s3_data
 
+prefect deployment set-schedule main_flow/tax1 --interval 120
+
+prefect profile ls
+
+prefect profile use default
+
+git commit -m "update ml orchestration w/ prefect"

@@ -28,3 +28,14 @@ deployments:
     work_queue_name:
     job_variables: {}
   schedules: []
+- name: taxi_s3_data
+  version:
+  tags: []
+  description:
+  entrypoint: 3.5/orchestrate_s3.py:main_flow_s3
+  parameters: {}
+  work_pool:
+    name: zoompool
+    work_queue_name:
+    job_variables: {}
+  schedules: []
